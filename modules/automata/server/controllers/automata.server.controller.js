@@ -48,6 +48,7 @@ exports.update = function (req, res) {
   automaton.title = req.body.title;
   automaton.eles = req.body.eles;
   automaton.tape = req.body.tape;
+  automaton.tapes = req.body.tapes;
   automaton.save(function (err) {
     if (err) {
       return res.status(400).send({
@@ -64,14 +65,14 @@ exports.update = function (req, res) {
  */
 exports.delete = function (req, res) {
   var automaton = req.automaton;
+  req.automaton.remove(function (err) {
 
-  automaton.remove(function (err) {
     if (err) {
       return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+        message: errorHandler.getErrorMessage('deleted ' + err)
       });
     } else {
-      res.json(automaton);
+      res.json(req.automaton);
     }
   });
 };

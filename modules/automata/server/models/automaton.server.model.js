@@ -41,12 +41,17 @@ var AutomatonSchema = new Schema({
     ref: 'Automaton'
   }],
   determ: { type: Boolean, default: true },
-  tape: {
+  tape: { // currently selected tape
     position: Number,
     contents: [String]
   },
+  tapes: [{
+    name: String,
+  //  dateCreated: Date,
+    contents: [String]
+  }],
   stack: [String],
-  eles: {
+  eles: { // 'elements'
     nodes: [
       {
         data: {
